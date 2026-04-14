@@ -4,12 +4,18 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// 🔥 test ก่อน
+// 🔥 รัน Discord Bot
+require("./bot.js");
+
+// 📂 ให้ใช้ไฟล์ในโฟลเดอร์นี้
+app.use(express.static(__dirname));
+
+// 🌐 หน้าเว็บหลัก
 app.get("/", (req, res) => {
-  console.log("มีคนเข้า / แล้ว");
-  res.send("OK WORKING");
+  res.sendFile(path.join(__dirname, "discordwebp.html"));
 });
 
+// ▶️ เปิด server
 app.listen(PORT, () => {
   console.log("Server running on port " + PORT);
 });

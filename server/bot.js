@@ -95,6 +95,13 @@ client.on("ready", async () => {
   console.log("โหลดทุกห้องเสร็จแล้ว!");
 });
 
+// ให้ใช้ไฟล์ในโฟลเดอร์เดียวกัน
+app.use(express.static(__dirname));
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
+
 // 🌐 API: ดึงข้อความตามห้อง
 app.get("/messages/:channelId", (req, res) => {
   const id = req.params.channelId;

@@ -10,7 +10,7 @@ app.use(express.static(__dirname));
 const path = require("path")
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "/discordwebp.html"));
+  res.send("OK WORKING");
 });
 
 app.listen(PORT, () => {

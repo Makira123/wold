@@ -11,9 +11,6 @@ require("./bot.js");
 app.use(express.static(__dirname));
 
 // 🌐 หน้าเว็บหลัก
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "discordwebp.html"));
-});
 
 // ▶️ เปิด server
 app.listen(PORT, () => {

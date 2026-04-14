@@ -9,6 +9,24 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+app.use(express.json()); // สำคัญมาก
+
+let data = {};
+
+app.post("/api/message", (req, res) => {
+  const { user, text, channelId } = req.body;
+
+  if (!data[channelId]) {
+    data[channelId] = [];
+  }
+
+  data[channelId].push({ user, text });
+
+  console.log("รับข้อมูล:", user, text);
+
+  res.sendStatus(200);
+});
+
 app.listen(PORT, () => {
   console.log("Server running on port " + PORT);
 });

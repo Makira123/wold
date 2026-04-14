@@ -10,7 +10,8 @@ app.use(express.static(__dirname));
 const path = require("path")
 
 app.get("/", (req, res) => {
-  res.send("HELLO ROOT FILE");
+  cinsole.log("hi")
+  res.send("OK WORKING");
 });
 
 app.listen(PORT, () => {

@@ -1,16 +1,12 @@
 const express = require("express");
+const path = require("path");
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-require("./bot.js");
-
-// ให้ใช้ไฟล์ในโฟลเดอร์เดียวกัน
-app.use(express.static(__dirname));
-
-const path = require("path")
-
+// 🔥 test ก่อน
 app.get("/", (req, res) => {
-  cinsole.log("hi")
+  console.log("มีคนเข้า / แล้ว");
   res.send("OK WORKING");
 });
 

@@ -10,7 +10,7 @@ app.use(express.static(__dirname));
 const path = require("path")
 
 app.get("/", (req, res) => {
-  res.send("OK WORKING");
+  res.send("HELLO ROOT FILE");
 });
 
 app.listen(PORT, () => {

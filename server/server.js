@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 // 🔥 ใส่ URL MongoDB ของคุณตรงนี้
-mongoose.connect("mongodb+srv://maki:makirajikan123@cluster0.p4kpyei.mongodb.net/?appName=Cluster0")
+mongoose.connect("mongodb+srv://maki:makirajikan123@cluster0.p4kpyei.mongodb.net/mydb")
 .then(()=>console.log("✅ MongoDB connected"))
 .catch(err=>console.log(err));
 
@@ -56,6 +56,6 @@ app.get("/messages/:channelId", async (req, res) => {
   res.json(messages);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0" () => {
   console.log("Server running on port " + PORT);
 });

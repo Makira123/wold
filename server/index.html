@@ -21,8 +21,13 @@ let lastData = "";
 
 const socket = io();
 socket.on("message", (data) => {
-    console.log("text :",data);
-    document.getElementById("text").innerText = data;
+    const select = document.getElemenByID("channel");
+
+    const option = document.createElement("option");
+    option.text =data;
+    option.value = data;
+
+    select.appendChild(option);
 });
 
 // โหลดข้อมูล

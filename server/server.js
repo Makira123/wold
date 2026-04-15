@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const http = require("http");
-const server = http.createServer(app);
+const s = http.createServer(app);
 
 // ให้ใช้ไฟล์ในโฟลเดอร์เดียวกัน
 app.use(express.static(__dirname));
@@ -29,6 +29,6 @@ app.post("/api/message", (req, res) => {
   res.sendStatus(200);
 });
 
-server.listen(PORT, () => {
+s.listen(PORT, () => {
   console.log("Server running on port " + PORT);
 });

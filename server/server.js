@@ -27,6 +27,6 @@ app.post("/api/message", (req, res) => {
   res.sendStatus(200);
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("Server running on port " + PORT);
 });

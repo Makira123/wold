@@ -21,7 +21,7 @@ let lastData = "";
 
 const socket = io();
 socket.on("message", (data) => {
-    const select = document.getElementByID("channel");
+    const select = document.getElementById("channel");
 
     const option = document.createElement("option");
     option.text =data;

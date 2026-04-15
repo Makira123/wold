@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 // 🔥 ใส่ URL MongoDB ของคุณตรงนี้
-mongoose.connect("mongodb+srv://maki:<db_password>@cluster0.p4kpyei.mongodb.net/?appName=Cluster0")
+mongoose.connect("mongodb+srv://maki:makirajikan123@cluster0.p4kpyei.mongodb.net/?appName=Cluster0")
 .then(()=>console.log("✅ MongoDB connected"))
 .catch(err=>console.log(err));
 

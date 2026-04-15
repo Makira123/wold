@@ -20,14 +20,9 @@
 <script>
 const socket = io();
 
-// 🔥 realtime จาก bot
-socket.on("message", (data) => {
-  const chat = document.getElementById("chat");
-
-  const div = document.createElement("div");
-  div.innerHTML = `<b>${data.user}</b>: ${data.text}`;
-
-  chat.appendChild(div);
+// 🔥 realtime
+socket.on("message", (msg) => {
+  renderMessage(msg);
 });
 
 // 📦 โหลดย้อนหลัง
@@ -40,11 +35,59 @@ async function load() {
   const chat = document.getElementById("chat");
   chat.innerHTML = "";
 
-  data.forEach(msg => {
-    const div = document.createElement("div");
-    div.innerHTML = `<b>${msg.user}</b>: ${msg.text}`;
-    chat.appendChild(div);
-  });
+  data.forEach(renderMessage);
+}
+
+function renderMessage(msg) {
+  const chat = document.getElementById("chat");
+
+  const box = document.createElement("div");
+  box.style.border = "1px solid #ccc";
+  box.style.margin = "5px";
+  box.style.padding = "5px";
+
+  // 👤 user
+  box.innerHTML += `<b>${msg.user}</b><br>`;
+
+  // 💬 text
+  box.innerHTML += `${msg.text || ""}<br>`;
+
+  // 🔗 links
+  if (msg.links) {
+    msg.links.forEach(link => {
+      const a = document.createElement("a");
+      a.href = link;
+      a.target = "_blank";
+      a.innerText = link;
+      box.appendChild(document.createElement("br"));
+      box.appendChild(a);
+    });
+  }
+
+  // 🖼 images
+  if (msg.images) {
+    msg.images.forEach(img => {
+      const image = document.createElement("img");
+      image.src = img;
+      image.width = 200;
+      box.appendChild(document.createElement("br"));
+      box.appendChild(image);
+    });
+  }
+
+  // 🎥 videos
+  if (msg.videos) {
+    msg.videos.forEach(vid => {
+      const video = document.createElement("video");
+      video.src = vid;
+      video.controls = true;
+      video.width = 250;
+      box.appendChild(document.createElement("br"));
+      box.appendChild(video);
+    });
+  }
+
+  chat.appendChild(box);
 }
 
 setInterval(load, 2000);

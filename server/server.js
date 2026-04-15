@@ -6,6 +6,8 @@ const PORT = process.env.PORT || 3000;
 app.use(cors()); // 🔥 สำคัญมาก
 app.use(express.json());
 
+app.use(express.static(__dirname));
+
 const path = require("path");
 
 app.get("/", (req, res) => {

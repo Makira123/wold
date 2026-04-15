@@ -21,7 +21,7 @@
 async function load() {
   const id = document.getElementById("channel").value;
 
-  const res = await fetch(`https://discord-mheg.onrender.com/messages/${id}`);
+  const res = await fetch(`/messages/${id}`);
   const data = await res.json();
 
   const chat = document.getElementById("chat");

@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 // 🔥 ใส่ URL MongoDB ของคุณตรงนี้
-mongoose.connect("mongodb+srv://maki:makirajikan123@cluster0.p4kpyei.mongodb.net/mydb?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://maki:makirajikan@cluster0.p4kpyei.mongodb.net/mydb?retryWrites=true&w=majority", {
 })
 .then(() => console.log("✅ MongoDB connected"))
 .catch(err => console.log("❌ MongoDB ERROR:", err.message));

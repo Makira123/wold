@@ -16,6 +16,7 @@ let data = {};
 
 // 📥 รับจาก bot
 app.post("/api/message", (req, res) => {
+  console.log("🔥 SERVER GOT:", req.body);
   const { user, text, channelId, images, videos } = req.body;
 
   if (!data[channelId]) {

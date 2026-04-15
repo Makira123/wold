@@ -15,8 +15,15 @@
 
 <div id="chat"></div>
 
+<script src="/socket.io/socket.io.js"></script>
 <script>
 let lastData = "";
+
+const socket = io();
+socket.on("message", (data) => {
+    console.log(data);
+    document.getElementById("text").innerText = data;
+});
 
 // โหลดข้อมูล
 async function load() {

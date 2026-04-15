@@ -17,9 +17,16 @@ app.get("/", (req, res) => {
 });
 
 // 🔥 ใส่ URL MongoDB ของคุณตรงนี้
-mongoose.connect("mongodb+srv://maki:makirajikan123@cluster0.p4kpyei.mongodb.net/mydb?retryWrites=true&w=majority")
-.then(()=>console.log("✅ MongoDB connected"))
-.catch(err=>console.log(err));
+mongoose.connect("mongodb+srv://maki:makirajikan123@cluster0.p4kpyei.mongodb.net/mydb?retryWrites=true&w=majority", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("✅ MongoDB connected"))
+.catch(err => console.log("❌ MongoDB ERROR:", err.message));
+
+mongoose.connection.on("error", err => {
+  console.log("❌ CONNECTION ERROR:", err);
+});
 
 // 📦 schema
 const Message = mongoose.model("Message", {

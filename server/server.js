@@ -36,17 +36,23 @@ app.post("/api/message", async (req, res) => {
 
   const { user, text, channelId, images, videos } = req.body;
 
-  await Message.create({
-    user,
-    text,
-    channelId,
-    images: images || [],
-    videos: videos || []
-  });
+  try {
+    const saved = await Message.create({
+      user,
+      text,
+      channelId,
+      images: images || [],
+      videos: videos || []
+    });
+
+    console.log("✅ SAVED:", saved);
+
+  } catch (err) {
+    console.log("❌ SAVE ERROR:", err);
+  }
 
   res.sendStatus(200);
 });
-
 // 📤 ส่งให้เว็บ
 app.get("/messages/:channelId", async (req, res) => {
   const messages = await Message.find({

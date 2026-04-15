@@ -5,7 +5,11 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // 🔥 เปิดไฟล์เว็บ (สำคัญ)
-app.use(express.static("public"));
+const path = require("path")
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
 // 📦 เก็บข้อมูล
 let data = {};

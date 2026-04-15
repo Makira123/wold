@@ -21,7 +21,7 @@ let lastData = "";
 
 const socket = io();
 socket.on("message", (data) => {
-    console.log(data);
+    console.log("text :",data);
     document.getElementById("text").innerText = data;
 });
 

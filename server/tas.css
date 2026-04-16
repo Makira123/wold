@@ -1,0 +1,55 @@
+/* Created by: Justin Linwood Ross */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+:root {
+  --bg1: #050012;
+  --neon-pink: #ff00ff;
+  --neon-blue: #00f0ff;
+  --glass-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+}
+
+* {
+  box-sizing: border-box
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: radial-gradient(circle at 30% 20%, #120023 0%, #04000a 60%, #000 100%);
+  color: #e8e6ff;
+  overflow: auto;
+  position: relative;
+}
+
+#bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+
+.glass-panel {
+  position: relative;
+  z-index: 2;
+  padding: 22px;
+  border-radius: 16px;
+  background: var(--glass-bg);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.6),
+    0 0 35px rgba(255, 0, 255, 0.08),
+    0 0 80px rgba(0, 240, 255, 0.06);
+  backdrop-filter: blur(10px) saturate(140%);
+  color: #fff;
+  overflow: visible;
+  width: 50%;
+  height: auto;
+}
+

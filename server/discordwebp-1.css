@@ -1,0 +1,11 @@
+body {
+    background-color: rgb(1, 0, 31);
+    color: white;
+    display: flex;
+}
+
+
+button {
+    position: fixed;
+    left: 92%;
+}

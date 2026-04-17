@@ -13,12 +13,15 @@ app.use(express.static(__dirname));
 const path = require("path");
 let data = {};
 
-app.get("/reset", (req, res) => {
-  for (let key in data) {
-    data[key] = [];
-  }// 🔥 ล้างข้อมูลทั้งหมด
-  console.log("รีข้อมูลแล้วlll");
-  res.send("cleared");
+app.get("/reset", async (req, res) => {
+  try {
+    await Message.deleteMany({}); // 🔥 ลบทั้งหมดใน DB
+    console.log("ลบข้อมูล MongoDB แล้ว");
+    res.send("cleared");
+  } catch (err) {
+    console.log("ลบไม่ได้:", err);
+    res.status(500).send("error");
+  }
 });
 
 app.get("/", (req, res) => {

@@ -11,6 +11,13 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 const path = require("path");
+let data = {};
+
+app.get("/reset", (req, res) => {
+  data = {}; // 🔥 ล้างข้อมูลทั้งหมด
+  console.log("รีข้อมูลแล้ว");
+  res.send("cleared");
+});
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));

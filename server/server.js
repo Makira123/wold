@@ -14,8 +14,10 @@ const path = require("path");
 let data = {};
 
 app.get("/reset", (req, res) => {
-  data = {}; // 🔥 ล้างข้อมูลทั้งหมด
-  console.log("รีข้อมูลแล้ว");
+  for (let key in data) {
+    data[key] = [];
+  }// 🔥 ล้างข้อมูลทั้งหมด
+  console.log("รีข้อมูลแล้วlll");
   res.send("cleared");
 });
 

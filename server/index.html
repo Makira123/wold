@@ -200,7 +200,7 @@ async function load() {
     msg.images.forEach(img => {
       const image = document.createElement("img");
       image.src = img;
-      image.width = 50%;
+      image.style.width = "50%";
       div.appendChild(document.createElement("br"));
       div.appendChild(image);
     });
@@ -210,7 +210,7 @@ async function load() {
       const video = document.createElement("video");
       video.src = vid;
       video.controls = true;
-      video.width = 50%;
+      video.style.width = "50%";
       div.appendChild(document.createElement("br"));
       div.appendChild(video);
     });

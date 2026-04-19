@@ -200,7 +200,7 @@ async function load() {
     msg.images.forEach(img => {
       const image = document.createElement("img");
       image.src = img;
-      image.width = 200;
+      image.width = auto;
       div.appendChild(document.createElement("br"));
       div.appendChild(image);
     });

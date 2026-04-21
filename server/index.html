@@ -200,7 +200,8 @@
         msg.images.forEach(img => {
           const image = document.createElement("img");
           image.src = img;
-          image.width = 200;
+          image.style.maxWidth = "100%";
+          image.style.height = "auto";
           div.appendChild(document.createElement("br"));
           div.appendChild(image);
         });
@@ -210,7 +211,8 @@
           const video = document.createElement("video");
           video.src = vid;
           video.controls = true;
-          video.width = 250;
+          video.style.maxWidth = "100%";
+          video.style.height = "auto";
           div.appendChild(document.createElement("br"));
           div.appendChild(video);
         });

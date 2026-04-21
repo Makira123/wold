@@ -58,8 +58,9 @@ body {
   width: 50%;
   animation: rotate 4s linear infinite;
   z-index: 1;
-  left: 17%;
   position: relative;
+  left: 17%;
+  display: flex;
 }
 
 .glass-panel::before {

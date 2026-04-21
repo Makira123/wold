@@ -60,7 +60,6 @@ body {
   z-index: 1;
   position: relative;
   left: 17%;
-  display: flex;
 }
 
 .glass-panel::before {

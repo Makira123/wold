@@ -8,7 +8,6 @@
   flex-wrap: wrap;
   border: 3px double;
   background: black;
-  z-index: -3;
 }
 
 .radio-wrapper {

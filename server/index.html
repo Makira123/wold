@@ -6,16 +6,15 @@
   <link rel="stylesheet" href="discordwebp.css">
   <link rel="stylesheet" href="discordwebp-1.css">
   <link rel="stylesheet" href="tas.css">
+  <link rel="stylesheet" href="t.css">
 </head>
 
 <body>
-  
   <canvas id="bg" role="img" aria-label="Animated neon background"></canvas>
 
-  <div class="container">
+  <div class="container" id="con">
 
-    <!-- 🎉 WALCOME -->
-    <h3>-----🎉WALCOME🎉-----</h3>
+    <h3 data-glitch="----🎉WALCOME🎉----"  class="glitch">----🎉WALCOME🎉----</h3>
 
     <div class="radio-wrapper">
       <input class="input" type="radio" name="channel" value="1367155856562458644" checked>
@@ -28,12 +27,17 @@
     </div>
 
     <div class="radio-wrapper">
+      <input class="input" type="radio" name="channel" value="1367191810807693423">
+      <div class="btn">พูดคุย<span class="btn__glitch">พูดคุย</span><label class="number">r3</label></div>
+    </div>
+
+    <div class="radio-wrapper">
       <input class="input" type="radio" name="channel" value="1490327860668534864">
-      <div class="btn">live<span class="btn__glitch">live</span><label class="number">r3</label></div>
+      <div class="btn">live<span class="btn__glitch">live</span><label class="number">r4</label></div>
     </div>
 
     <!-- ✨ Vtuber -->
-    <h3>----- ✨Vtuber ✨-----</h3>
+    <h3 data-glitch="---- ✨Vtuber ✨----" class="glitch">---- ✨Vtuber ✨----</h3>
 
     <div class="radio-wrapper">
       <input class="input" type="radio" name="channel" value="1358181550281330788">
@@ -51,7 +55,7 @@
     </div>
 
     <!-- 🖼 GeneralPicture -->
-    <h3>----🖼GeneralPicture🖼----</h3>
+    <h3 data-glitch="-🖼GeneralPicture🖼-" class="glitch">-🖼GeneralPicture🖼-</h3>
 
     <div class="radio-wrapper">
       <input class="input" type="radio" name="channel" value="1358178558698196992">
@@ -65,7 +69,7 @@
 
     <div class="radio-wrapper">
       <input class="input" type="radio" name="channel" value="1358178825690939586">
-      <div class="btn">all-in-one<span class="btn__glitch">all-in-one</span><label class="number">r9</label></div>
+      <div class="btn">aio<span class="btn__glitch">aio</span><label class="number">r9</label></div>
     </div>
 
     <div class="radio-wrapper">
@@ -79,7 +83,7 @@
     </div>
 
     <!-- 🔴 ServicePicture -->
-    <h3>----🔴ServicePicture🔴----</h3>
+    <h3 data-glitch="-🔴ServicePicture🔴-" class="glitch">-🔴ServicePicture🔴-</h3>
 
     <div class="radio-wrapper">
       <input class="input" type="radio" name="channel" value="1358179218684645487">
@@ -93,7 +97,7 @@
 
     <div class="radio-wrapper">
       <input class="input" type="radio" name="channel" value="1358179454253269109">
-      <div class="btn">all-in-one<span class="btn__glitch">all-in-one</span><label class="number">r14</label></div>
+      <div class="btn">aio<span class="btn__glitch">aio</span><label class="number">r14</label></div>
     </div>
 
     <div class="radio-wrapper">
@@ -102,7 +106,7 @@
     </div>
 
     <!-- 🔞 ZONENFSW -->
-    <h3>----🔞ZONENFSW🔞----</h3>
+    <h3 data-glitch="---🔞ZONENFSW🔞---" class="glitch">---🔞ZONENFSW🔞---</h3>
 
     <div class="radio-wrapper">
       <input class="input" type="radio" name="channel" value="1358179685095182456">
@@ -150,7 +154,7 @@
     </div>
 
     <!-- 🔞 BOT -->
-    <h3>-----🔞BOT-NFSW🔞-----</h3>
+    <h3 data-glitch="---🔞BOT-NFSW🔞---" class="glitch">---🔞BOT-NFSW🔞---</h3>
 
     <div class="radio-wrapper">
       <input class="input" type="radio" name="channel" value="1366108713147957248">
@@ -171,62 +175,54 @@
 
   <button onclick="load()">โหลด</button>
 
-  <div id="chat" class="glass-panel">hi</div>
+  <div id="chat" class="glass-panel"></div>
 
   <script type="module" src="tas.js"></script>
+  <script type="module" src="color.js"></script>
 
   <script>
-let loading = false;
+    async function load() {
+      const selected = document.querySelector('input[name="channel"]:checked');
+      const id = selected.value;
 
-async function load() {
-  if (loading) return; // 🔥 กันซ้ำ
-  loading = true;
+      const res = await fetch(`/messages/${id}`);
+      const data = await res.json();
 
-  const selected = document.querySelector('input[name="channel"]:checked');
-  const id = selected.value;
+      const chat = document.getElementById("chat");
+      chat.innerHTML = "";
 
-  const res = await fetch(`/messages/${id}`);
-  const data = await res.json();
+      data.forEach(msg => {
+        const div = document.createElement("div");
 
-  const chat = document.getElementById("chat");
-  chat.innerHTML = ""; // ✅ ล้างก่อน
+        div.innerHTML = `<b>${msg.user}</b>: ${msg.text || ""}`;
 
-  data.forEach(msg => {
-    const div = document.createElement("div");
+        // 🖼 images
+        msg.images.forEach(img => {
+          const image = document.createElement("img");
+          image.src = img;
+          image.width = 200;
+          div.appendChild(document.createElement("br"));
+          div.appendChild(image);
+        });
 
-    div.innerHTML = `<b>${msg.user}</b>: ${msg.text || ""}`;
+        // 🎥 videos
+        msg.videos.forEach(vid => {
+          const video = document.createElement("video");
+          video.src = vid;
+          video.controls = true;
+          video.width = 250;
+          div.appendChild(document.createElement("br"));
+          div.appendChild(video);
+        });
 
-    // 🖼 images
-    msg.images.forEach(img => {
-      const image = document.createElement("img");
-      image.src = img;
-      image.style.maxWidth = "100%";
-      image.style.height = "auto";
-      div.appendChild(document.createElement("br"));
-      div.appendChild(image);
-    });
+        chat.appendChild(div);
+        chat.appendChild(document.createElement("hr"));
+      });
+    }
 
-    // 🎥 videos
-    msg.videos.forEach(vid => {
-      const video = document.createElement("video");
-      video.src = vid;
-      video.controls = true;
-      image.style.maxWidth = "100%";
-      image.style.height = "auto";
-      div.appendChild(document.createElement("br"));
-      div.appendChild(video);
-    });
-
-    chat.appendChild(div);
-    chat.appendChild(document.createElement("hr"));
-  });
-
-  loading = false; // 🔥 ปลดล็อค
-}
-
-load();
-setInterval(load, 3000);
-</script>
+    load();
+    setInterval(load, 3000);
+  </script>
 
 </body>
 
